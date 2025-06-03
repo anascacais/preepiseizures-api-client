@@ -45,3 +45,17 @@ class PreEpiSeizuresDBClient:
             return save_path
         else:
             return response.content
+
+    def download_files(self, file_ids, save_zip_path):
+        # Pass file_ids as multiple query parameters ?file_ids=1&file_ids=2
+        params = [("file_ids", fid) for fid in file_ids]
+        response = requests.get(
+            f"{self.api_url}/download",
+            headers=self.headers,
+            params=params,
+            stream=True
+        )
+        response.raise_for_status()
+        with open(save_zip_path, "wb") as f:
+            for chunk in response.iter_content(chunk_size=8192):
+                f.write(chunk)

@@ -10,3 +10,8 @@ print(files)
 file_id = files[0]['id']
 local_path = client.download_file(file_id, save_path="downloaded_file.txt")
 print(f"File saved to: {local_path}")
+
+
+# Download multiple files as ZIP
+file_ids = [f["id"] for f in files]
+client.download_files(file_ids, "files.zip")
