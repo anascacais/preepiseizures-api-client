@@ -23,3 +23,25 @@ class PreEpiSeizuresDBClient:
         )
         response.raise_for_status()
         return response.json()
+
+    def download_file(self, file_id, save_path=None):
+        """
+        Download a file by ID from the API.
+        If save_path is provided, saves to disk.
+        Otherwise returns bytes content.
+        """
+        response = requests.get(
+            f"{self.api_url}/download/{file_id}",
+            headers=self.headers,
+            stream=True
+        )
+        response.raise_for_status()
+
+        if save_path:
+            with open(save_path, "wb") as f:
+                for chunk in response.iter_content(chunk_size=8192):
+                    if chunk:
+                        f.write(chunk)
+            return save_path
+        else:
+            return response.content

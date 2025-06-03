@@ -4,8 +4,8 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-preepiseizures-api-client = {file = "."}
 requests = "*"
+preepiseizures-api-client = {file = ".", editable = true}
 
 [dev-packages]
 
