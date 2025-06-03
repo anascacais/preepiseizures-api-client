@@ -1,6 +1,6 @@
 # preepiseizures-api-client
 
-Python client for interacting with the [Preepiseizures API](https://github.com/anascacais/preepiseizures-api).
+Python client for interacting with the [PreEpiSeizures API](https://github.com/anascacais/preepiseizures-api).
 
 This client simplifies access to authorized endpoints for researchers working with seizure-related data.
 
