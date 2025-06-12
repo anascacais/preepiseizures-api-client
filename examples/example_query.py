@@ -2,16 +2,24 @@ from preepiseizures_api_client.client import PreEpiSeizuresDBClient
 
 client = PreEpiSeizuresDBClient(
     "http://localhost:8000", "testuser", "mypassword")
-files = client.get_files(min_events=0)
-print(files)
 
+# Get records
+records = [item['record_id'] for item in client.get_records(
+    patient_code='IQCX', modality='report')]
+print(records)
 
-# Download first file and save locally
-file_id = files[0]['id']
-local_path = client.download_file(file_id, save_path="downloaded_file.txt")
-print(f"File saved to: {local_path}")
-
+# Download file and save locally
+_ = client.download_record(
+    records[0], save_path="results")
 
 # Download multiple files as ZIP
-file_ids = [f["id"] for f in files]
-client.download_files(file_ids, "files.zip")
+client.download_records(records, "results")
+
+# Get sessions by patient
+sessions = client.get_sessions_by_patient(patient_code='IQCX')
+print(sessions)
+
+# Get events
+events = client.get_events(
+    patient_code='IQCX', session_date='2021-06-14 09:00:00')
+print(events)
