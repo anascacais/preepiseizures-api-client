@@ -1,7 +1,8 @@
 from preepiseizures_api_client.client import PreEpiSeizuresDBClient
+from config import HOST, USER, PASSWORD
 
 client = PreEpiSeizuresDBClient(
-    "http://localhost:8000", "testuser", "mypassword")
+    f"http://{HOST}:8000", USER, PASSWORD)
 
 # Get records
 records = [item['record_id'] for item in client.get_records(
