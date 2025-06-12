@@ -4,6 +4,11 @@ from config import HOST, USER, PASSWORD
 client = PreEpiSeizuresDBClient(
     f"http://{HOST}:8000", USER, PASSWORD)
 
+
+# Get sessions by patient
+sessions = client.get_sessions_by_patient(patient_code='IQCX')
+print(sessions)
+
 # Get records
 records = [item['record_id'] for item in client.get_records(
     patient_code='IQCX', modality='report')]
@@ -16,11 +21,8 @@ _ = client.download_record(
 # Download multiple files as ZIP
 client.download_records(records, "results")
 
-# Get sessions by patient
-sessions = client.get_sessions_by_patient(patient_code='IQCX')
-print(sessions)
 
-# Get events
+# # Get events
 events = client.get_events(
     patient_code='IQCX', session_date='2021-06-14 09:00:00')
 print(events)
