@@ -128,14 +128,18 @@ class PreEpiSeizuresDBClient:
                 f.write(chunk)
         print(f"ZIPs saved as: {os.path.join(save_zip_path, zipname)}")
 
-    def get_sessions_by_patient(self, patient_code):
+    def get_sessions(self, patient_code=None, event_types=None, modality=None):
         """
-        Retrieve sessions for a given patient.
+        Retrieve sessions filtered by patient code, event type, or modality.
 
         Parameters
         ----------
         patient_code : str
             Code identifying the patient.
+        event_types : list, optional
+            List with seizure type classification which the events should match (all must be present for the event to be selected). Choose from 'focal', 'aware', 'motor', 'automatisms', 'impaired awareness', 'tonic', 'to bilateral tonic-clonic', 'generalized', 'absence', 'tonic-clonic', 'non-motor', 'behavior arrest', 'not seizure' 
+        modality : str, optional
+            Modality of the record (e.g., 'report', 'wearable', 'hospital_eeg', or 'hospital_video').
 
         Returns
         -------
@@ -148,8 +152,11 @@ class PreEpiSeizuresDBClient:
             If the request fails.
         """
         response = requests.get(
-            f"{self.api_url}/patients/{patient_code}/sessions",
+            f"{self.api_url}/sessions/",
             headers=self.headers,
+            params={"patient_code": patient_code,
+                    "event_types": event_types,
+                    "modality": modality}
         )
         response.raise_for_status()
         return response.json()

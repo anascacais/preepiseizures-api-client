@@ -6,7 +6,8 @@ client = PreEpiSeizuresDBClient(
 
 
 # Get sessions by patient
-sessions = client.get_sessions_by_patient(patient_code='IQCX')
+sessions = client.get_sessions(
+    patient_code='BBYZ', event_types=["aware", "focal"], modality='report')
 print(sessions)
 
 # Get records
