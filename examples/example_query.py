@@ -22,7 +22,7 @@ _ = client.download_record(
 client.download_records(records, "results")
 
 
-# # Get events
+# Get events
 events = client.get_events(
-    patient_code='IQCX', session_date='2021-06-14 09:00:00')
+    patient_code='BBYZ', session_date='2020-09-22 10:00:00', event_types=["aware", "focal"])
 print(events)

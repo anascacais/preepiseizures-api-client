@@ -105,7 +105,7 @@ class PreEpiSeizuresDBClient:
         record_ids : list of int
             List of record IDs to download.
         save_zip_path : str
-            Directory path to save the ZIP file.
+            Directory path to save the ZIP file. The ZIP maintains original directory structure.
 
         Raises
         ------
@@ -190,7 +190,7 @@ class PreEpiSeizuresDBClient:
         response.raise_for_status()
         return response.json()
 
-    def get_events(self, patient_code=None, session_date=None, session_id=None):
+    def get_events(self, patient_code=None, session_date=None, session_id=None, event_types=None):
         """
         Retrieve events filtered by patient code, session date, or session ID.
 
@@ -202,6 +202,8 @@ class PreEpiSeizuresDBClient:
             Date/time of the session (ISO format).
         session_id : int, optional
             ID of the session.
+        event_types : list, optional
+            List with seizure type classification which the events should match (all must be present for the event to be selected). Choose from 'focal', 'aware', 'motor', 'automatisms', 'impaired awareness', 'tonic', 'to bilateral tonic-clonic', 'generalized', 'absence', 'tonic-clonic', 'non-motor', 'behavior arrest', 'not seizure' 
 
         Returns
         -------
@@ -217,7 +219,8 @@ class PreEpiSeizuresDBClient:
             f"{self.api_url}/events/",
             headers=self.headers,
             params={"patient_code": patient_code,
-                    "session_date": session_date, "session_id": session_id}
+                    "session_date": session_date, "session_id": session_id,
+                    "event_types": event_types}
         )
         response.raise_for_status()
         return response.json()
