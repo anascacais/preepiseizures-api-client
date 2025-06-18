@@ -210,7 +210,7 @@ class PreEpiSeizuresDBClient:
         session_id : int, optional
             ID of the session.
         event_types : list, optional
-            List with seizure type classification which the events should match (all must be present for the event to be selected). Choose from 'focal', 'aware', 'motor', 'automatisms', 'impaired awareness', 'tonic', 'to bilateral tonic-clonic', 'generalized', 'absence', 'tonic-clonic', 'non-motor', 'behavior arrest', 'not seizure' 
+            List with seizure type classification which the events should match (all must be present for the event to be selected). Choose from 'focal', 'aware', 'motor', 'automatisms', 'impaired awareness', 'unknown awareness', 'tonic', 'to bilateral tonic-clonic', 'generalized', 'absence', 'tonic-clonic', 'non-motor', 'behavior arrest', 'not seizure', 'seizure','subclinical'
 
         Returns
         -------
