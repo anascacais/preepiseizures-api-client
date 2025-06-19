@@ -8,6 +8,17 @@ class PreEpiSeizuresDBClient:
 
     Handles authentication and provides methods to query sessions,
     download records, and retrieve events.
+
+    Warning
+    -------
+    The seizure timestamps returned by the API are aligned with **hospital recordings**.
+    Wearable data may contain incorrect or unsynchronized timestamps.
+
+    Reliable synchronization of wearable and hospital data is **not guaranteed**.
+    You must implement your own synchronization method if aligning the two.
+
+    Patients with known reliable wearable timestamps: 
+    ['BLIW', 'BSEA', 'GPPF', 'OFUF', 'RGNI', 'UDZG', 'YIVL']
     """
 
     def __init__(self, api_url, username, password):

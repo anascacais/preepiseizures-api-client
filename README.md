@@ -30,6 +30,23 @@ client = PreEpiSeizuresDBClient(
 
 ---
 
+## ⚠️ Data Synchronization Notice
+
+**Important:** The seizure times stored in the database are aligned with **hospital data** and not guaranteed to be synchronized with **wearable recordings**.
+
+There are two critical issues to be aware of:
+
+1. **Incorrect Wearable Timestamps:**  
+   Some sessions contain wearable files where the initial timestamp is incorrect (e.g., starts exactly at `10:00:00`, which may be a placeholder or default value).
+2. **No Guaranteed Synchronization:**  
+   Even when the wearable data has plausible timestamps, they are **not guaranteed to be aligned** with hospital data for the same session.
+
+The patient codes for which the wearable timestamps are known to be reliable are: **BLIW, BSEA, GPPF, OFUF, RGNI, UDZG, YIVL**.
+
+> ⚠️ If you are comparing or aligning events between wearable and hospital data, **you must implement a synchronization method** (e.g., heart rate signal alignment).
+
+---
+
 ## 🔐 Authentication
 
 The client handles authentication automatically:
