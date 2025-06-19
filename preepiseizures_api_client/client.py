@@ -148,7 +148,7 @@ class PreEpiSeizuresDBClient:
         patient_code : str
             Code identifying the patient.
         event_types : list, optional
-            List with seizure type classification which the events should match (all must be present for the event to be selected). Choose from 'focal', 'aware', 'motor', 'automatisms', 'impaired awareness', 'tonic', 'to bilateral tonic-clonic', 'generalized', 'absence', 'tonic-clonic', 'non-motor', 'behavior arrest', 'not seizure' 
+            List with seizure type classification which the events should match (all must be present for the event to be selected). Choose from 'seizure', 'non-seizure', 'subclinical', 'electrographic', 'non-electrographic', 'aware', 'impaired awareness', 'unknown awareness', 'focal', 'generalized', 'to bilateral tonic-clonic', 'tonic-clonic', 'tonic', 'motor', 'non-motor', 'automatisms', 'behavior arrest', 'absence'
         modality : str, optional
             Modality of the record (e.g., 'report', 'wearable', 'hospital_eeg', or 'hospital_video').
 
@@ -221,7 +221,7 @@ class PreEpiSeizuresDBClient:
         session_id : int, optional
             ID of the session.
         event_types : list, optional
-            List with seizure type classification which the events should match (all must be present for the event to be selected). Choose from 'focal', 'aware', 'motor', 'automatisms', 'impaired awareness', 'unknown awareness', 'tonic', 'to bilateral tonic-clonic', 'generalized', 'absence', 'tonic-clonic', 'non-motor', 'behavior arrest', 'not seizure', 'seizure','subclinical'
+            List with seizure type classification which the events should match (all must be present for the event to be selected). Choose from 'seizure', 'non-seizure', 'subclinical', 'electrographic', 'non-electrographic', 'aware', 'impaired awareness', 'unknown awareness', 'focal', 'generalized', 'to bilateral tonic-clonic', 'tonic-clonic', 'tonic', 'motor', 'non-motor', 'automatisms', 'behavior arrest', 'absence'
 
         Returns
         -------
